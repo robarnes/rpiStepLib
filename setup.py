@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="rpimotorlib",
-    version="3.1",
+    version="3.2",
     author="Gavin Lyons",
     author_email="glyons66@hotmail.com",
     description="A python 3 library for various motors and servos to connect to a raspberry pi",

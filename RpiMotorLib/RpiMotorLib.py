@@ -298,7 +298,7 @@ class A4988Nema(object):
         else:
             # print report status
             if verbose:
-                print("hi from rob v3")
+                print("hi from rob v4")
                 print("\nRpiMotorLib, Motor Run finished, Details:.\n")
                 print("Motor type = {}".format(self.motor_type))
                 print("Clockwise = {}".format(clockwise))
