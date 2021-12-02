@@ -298,7 +298,7 @@ class A4988Nema(object):
         else:
             # print report status
             if verbose:
-                print("hi from rob")
+                print("hi from rob v2")
                 print("\nRpiMotorLib, Motor Run finished, Details:.\n")
                 print("Motor type = {}".format(self.motor_type))
                 print("Clockwise = {}".format(clockwise))
@@ -315,7 +315,7 @@ class A4988Nema(object):
             if self.mode_pins != False:
                 for pin in self.mode_pins:
                     GPIO.output(pin, False)
-
+            return("my man")
 
 class A3967EasyNema(object):
     """ Class to control a Nema bi-polar stepper motor with A3967 Easy driver
