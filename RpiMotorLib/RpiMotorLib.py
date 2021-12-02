@@ -179,7 +179,7 @@ class BYJMotor(object):
 
 class A4988Nema(object):
     """ Class to control a Nema bi-polar stepper motor with a A4988 also tested with DRV8825"""
-    def __init__(self, direction_pin, step_pin, mode_pins, motor_type="A4988"):
+    def __init__(self, direction_pin, step_pin, mode_pins, motor_type="A4988", out_q):
         """ class init method 3 inputs
         (1) direction type=int , help=GPIO pin connected to DIR pin of IC
         (2) step_pin type=int , help=GPIO pin connected to STEP of IC
@@ -191,6 +191,7 @@ class A4988Nema(object):
         self.motor_type = motor_type
         self.direction_pin = direction_pin
         self.step_pin = step_pin
+        self.out_q = out_q
 
         if mode_pins[0] != -1:
             self.mode_pins = mode_pins
@@ -245,7 +246,7 @@ class A4988Nema(object):
             GPIO.output(self.mode_pins, resolution[steptype])
 
     def motor_go(self, clockwise=False, steptype="Full",
-                 steps=200, stepdelay=.005, verbose=False, initdelay=.05, out_q):
+                 steps=200, stepdelay=.005, verbose=False, initdelay=.05):
         """ motor_go,  moves stepper motor based on 6 inputs
 
          (1) clockwise, type=bool default=False
@@ -284,7 +285,7 @@ class A4988Nema(object):
                     time.sleep(stepdelay)
                     GPIO.output(self.step_pin, False)
                     time.sleep(stepdelay)
-                    out_q.put(i)  #push the step count to queue
+                    self.out_q.put(i)  #push the step count to queue
                     if verbose:
                         print("Steps count {}".format(i+1), end="\r", flush=True)
 
