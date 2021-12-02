@@ -245,7 +245,7 @@ class A4988Nema(object):
             GPIO.output(self.mode_pins, resolution[steptype])
 
     def motor_go(self, clockwise=False, steptype="Full",
-                 steps=200, stepdelay=.005, verbose=False, initdelay=.05):
+                 steps=200, stepdelay=.005, verbose=False, initdelay=.05, out_q):
         """ motor_go,  moves stepper motor based on 6 inputs
 
          (1) clockwise, type=bool default=False
@@ -284,6 +284,7 @@ class A4988Nema(object):
                     time.sleep(stepdelay)
                     GPIO.output(self.step_pin, False)
                     time.sleep(stepdelay)
+                    out_q.put(i)  #push the step count to queue
                     if verbose:
                         print("Steps count {}".format(i+1), end="\r", flush=True)
 
@@ -298,7 +299,6 @@ class A4988Nema(object):
         else:
             # print report status
             if verbose:
-                print("hi from rob v4")
                 print("\nRpiMotorLib, Motor Run finished, Details:.\n")
                 print("Motor type = {}".format(self.motor_type))
                 print("Clockwise = {}".format(clockwise))
