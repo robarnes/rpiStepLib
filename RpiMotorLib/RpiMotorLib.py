@@ -314,6 +314,7 @@ class A4988Nema(object):
             if self.mode_pins != False:
                 for pin in self.mode_pins:
                     GPIO.output(pin, False)
+            print("hi")
 
 
 class A3967EasyNema(object):
