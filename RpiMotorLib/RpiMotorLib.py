@@ -298,6 +298,7 @@ class A4988Nema(object):
         else:
             # print report status
             if verbose:
+                print("hi from rob")
                 print("\nRpiMotorLib, Motor Run finished, Details:.\n")
                 print("Motor type = {}".format(self.motor_type))
                 print("Clockwise = {}".format(clockwise))
@@ -314,7 +315,6 @@ class A4988Nema(object):
             if self.mode_pins != False:
                 for pin in self.mode_pins:
                     GPIO.output(pin, False)
-            return("HiFromMotors")
 
 
 class A3967EasyNema(object):
